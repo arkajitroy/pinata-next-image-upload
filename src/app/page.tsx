@@ -7,6 +7,7 @@ import { NoImageIndicator } from "@/components/no-image-indicator";
 
 export default function Home() {
   const [images, setImages] = useState<string[]>([]);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
   const [isUploading, setIsUploading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -28,6 +29,7 @@ export default function Home() {
 
   const handleFetchAPIRequest = useCallback(async () => {
     try {
+      setIsFetching(true);
       const request = await fetch("/api/files", {
         method: "GET",
       });
@@ -39,6 +41,7 @@ export default function Home() {
     } catch (error) {
       console.log(error);
     } finally {
+      setIsFetching(false);
     }
   }, []);
 
@@ -84,11 +87,8 @@ export default function Home() {
       <p className="text-sm text-gray-500 text-center mb-10">
         The image gallary has been made using pinata sdk
       </p>
-      {images.length > 0 ? (
-        <ImageGrid images={images} setImages={setImages} isUploading={isUploading} />
-      ) : (
-        <NoImageIndicator />
-      )}
+      {images.length === 0 && <NoImageIndicator isFetching={isFetching} />}
+      <ImageGrid images={images} setImages={setImages} />
 
       <UploadDialog
         imageDialogOpen={imageDialogOpen}
