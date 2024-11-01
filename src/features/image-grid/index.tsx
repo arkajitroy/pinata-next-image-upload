@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 type ImageGridProps = {
   images: string[];
@@ -11,6 +11,7 @@ type ImageGridProps = {
 };
 
 const ImageGrid: React.FC<ImageGridProps> = ({ images, setImages, isUploading }) => {
+  console.log("debug: images", images);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {images.map((img, index) => (
@@ -19,7 +20,7 @@ const ImageGrid: React.FC<ImageGridProps> = ({ images, setImages, isUploading })
           className="relative group overflow-hidden rounded-lg shadow-lg drop-shadow-md transition-transform duration-300 ease-in-out hover:scale-105"
         >
           <img
-            src={img}
+            src={img!}
             alt={`Uploaded ${index}`}
             className="w-full h-full object-cover"
           />
