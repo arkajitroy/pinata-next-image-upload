@@ -9,7 +9,7 @@ type NoImageIndicatorProps = {
   isFetching: boolean;
 };
 
-export const NoImageIndicator = ({ isFetching }: NoImageIndicatorProps) => {
+export default function NoImageIndicator({ isFetching }: NoImageIndicatorProps) {
   return (
     <Card className="col-span-full bg-transparent shadow-none">
       <CardContent className="flex flex-col items-center justify-center h-64">
@@ -23,4 +23,4 @@ export const NoImageIndicator = ({ isFetching }: NoImageIndicatorProps) => {
       </CardContent>
     </Card>
   );
-};
+}

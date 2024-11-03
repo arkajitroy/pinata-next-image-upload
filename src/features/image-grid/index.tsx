@@ -1,6 +1,8 @@
+"use client";
+
+import React, { Dispatch, SetStateAction } from "react";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import React, { Dispatch, SetStateAction } from "react";
 
 type ImageGridProps = {
   images: string[];
